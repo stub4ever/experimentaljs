@@ -1,7 +1,22 @@
 <template>
     <main class="page load-intro">
+        <h2>Courses</h2>
         <ol>
-            <li v-for="item in items" v-bind:key="item">
+            <li class="margin-bottom-xxs" v-for="item in items" v-bind:key="item">
+                <nuxt-link :to="item.linkPath">{{ item.linkName }}</nuxt-link>
+            </li>
+        </ol>
+
+        <h2>Components</h2>
+        <ol>
+            <li class="margin-bottom-xxs" v-for="item in components" v-bind:key="item">
+                <nuxt-link :to="item.linkPath">{{ item.linkName }}</nuxt-link>
+            </li>
+        </ol>
+
+        <h2>Experimentals</h2>
+        <ol>
+            <li class="margin-bottom-xxs" v-for="item in experimentals" v-bind:key="item">
                 <nuxt-link :to="item.linkPath">{{ item.linkName }}</nuxt-link>
             </li>
         </ol>
@@ -17,14 +32,21 @@
         data() {
             return {
                 items: [
-                    { linkName: '1. Spinning Square', linkPath: '/spinning-square' },
-                ]
+                    { linkName: '1. Creative Maths', linkPath: '/maths' },
+                    { linkName: '2. Creative Motions', linkPath: '/motions' },
+                ],
+                components: [
+                    { linkName: '1. slideshow', linkPath: '/slideshows' },
+                ],
+                experimentals: [
+                    { linkName: '1. Random Experimental', linkPath: '/experimentals' },
+                ],
             }
         },
     }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     main {
         padding: 50px;
     }

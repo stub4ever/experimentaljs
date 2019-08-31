@@ -36,7 +36,7 @@ export default {
     */
     plugins: [
         { src: '~/plugins/polyfill', ssr: false }, // Set server-side-rendering (ssr) false for applying 'window'
-        "~/plugins/Util",
+        "~/plugins/Util"
     ],
     /*
     ** Nuxt.js dev-modules
@@ -53,6 +53,7 @@ export default {
     ** Build configuration
     */
     build: {
+        // vendor: ['p5'],
         assetsPublicPath: '/',
         assetsSubDirectory: 'assets/[filename]',
         postcss: {

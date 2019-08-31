@@ -9,6 +9,7 @@
 <script>
     // Plugins
     import Util from '~/plugins/Util.js'
+    import Two from 'two.js'    
     
     export default {
         components: {
@@ -16,10 +17,10 @@
         },
         mounted() {
             // Init object slider
-            const ball = document.querySelectorAll('[data-ball-target]');
-            if( ball.length > 0) {
-                for( var i = 0; i < ball.length; i++) {
-                    this.initWallBall(ball[i]); 
+            const square = document.querySelectorAll('[data-ref="square"]');
+            if( square.length > 0) {
+                for( var i = 0; i < square.length; i++) {
+                    this.initSpinningSquare(square[i]); 
                 }
             }
         },
@@ -28,23 +29,23 @@
             }
         },
         methods: {
-            initWallBall: function(element) {
+            initSpinningSquare: function(element) {
                 // The SliderItem Class
-                class WallBall {
+                class SpinningSquare {
                     constructor(opts) {
                         this.DOM = {
-                            target: opts.target,
+                            ref: opts.ref,
                         };
                     }
                 }
 
-                new WallBall({target: element });
+                new SpinningSquare({ref: element });
             }
         }
     }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     body {
         background-color: #FFe8b4; 
     }
