@@ -39,14 +39,9 @@ export default {
     */
     plugins: [
         { src: '~/plugins/polyfill', ssr: false }, // Set server-side-rendering (ssr) false for applying 'window'
-<<<<<<< HEAD
         "~/plugins/Util",
-        
         // Wordpress
         "~/plugins/wp/config",
-=======
-        "~/plugins/Util"
->>>>>>> 8bbc5c0a27cb2e333507a990a293f96ec60a2d81
     ],
     /*
     ** Nuxt.js dev-modules
