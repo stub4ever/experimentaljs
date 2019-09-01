@@ -1,6 +1,5 @@
 import purgecss from '@fullhuman/postcss-purgecss'
 import postcssCalc from 'postcss-calc'
-import axios from 'axios'
 
 export default {
     mode: 'universal',
@@ -40,8 +39,6 @@ export default {
     plugins: [
         { src: '~/plugins/polyfill', ssr: false }, // Set server-side-rendering (ssr) false for applying 'window'
         "~/plugins/Util",
-        // Wordpress
-        "~/plugins/wp/config",
     ],
     /*
     ** Nuxt.js dev-modules
@@ -52,8 +49,6 @@ export default {
     ** Nuxt.js modules
     */
     modules: [
-         // Doc: https://github.com/nuxt-community/axios-module#usage
-        '@nuxtjs/axios',
         '@nuxtjs/style-resources',
     ],
     
@@ -62,23 +57,6 @@ export default {
     See https://github.com/nuxt-community/axios-module#options
     */
     axios: { 
-        baseURL:  process.env.API_URL || 'http://tobybuicom:8888/wp-json/wp/v2'
-    },
-
-
-    /*
-    ** Generate configuration
-    */
-    generate: {
-        // Create a cache so that the component can use them without making unnecessary AJAX calls 
-        // Prevent all calls for each post
-        async routes() {
-            let response = await axios.get('http://tobybuicom:8888/wp-json/wp/v2/posts')
-            return response.data.map((post) => ({
-                route: `blog/${post.slug}`, // where the path goes under 
-                payload: post // passing the post the component as the payload
-            }))
-        }
     },
     /*
     ** Build configuration
