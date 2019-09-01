@@ -4,6 +4,9 @@ import axios from 'axios'
 
 export default {
     mode: 'universal',
+    env: {
+        BASE_URL: process.env.BASE_URL || 'http://localhost:3000'
+    },
     /*
     ** Headers of the page
     */
@@ -68,7 +71,6 @@ export default {
     ** Generate configuration
     */
     generate: {
-
         // Create a cache so that the component can use them without making unnecessary AJAX calls 
         // Prevent all calls for each post
         async routes() {
@@ -76,9 +78,9 @@ export default {
             return response.data.map((post) => ({
                 route: `blog/${post.slug}`, // where the path goes under 
                 payload: post // passing the post the component as the payload
+            }))
         }
     },
-
     /*
     ** Build configuration
     */
