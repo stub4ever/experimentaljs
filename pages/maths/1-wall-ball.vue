@@ -37,19 +37,20 @@
             // https://github.com/processing/p5.js/issues/2646
             initBall() {
                 this.script = p5 => {
-                    // Apply canvas to get whole window size
                     this.x = window.innerWidth
                     this.y = window.innerHeight
 
-                    // Canvas is by default 100 by 100 when not creating canvas
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(this.x , this.y)
                         this.canvas.parent(this.$refs.canvas)
                     }
 
-                    // Add events on draw X and Y mouse movement
                     p5.draw = () => {
+                        // Each time when move my mouse over the canvas I draw a frame. Base on this order it add first the background > circle > fill = repeat
+                        // This will prevent repeatable circle on the frame when move mouse
+                        p5.background('#FFe44588') // add apha channel by 2 hexnumber => to get trail effects on the circle => the higher the number the faster response
                         p5.circle(p5.mouseX, p5.mouseY, 20);
+                        p5.fill('#222222')
                     }
                 }
 
