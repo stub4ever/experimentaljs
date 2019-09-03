@@ -37,25 +37,29 @@
             // https://github.com/processing/p5.js/issues/2646
             initBall() {
                 this.script = p5 => {
-                    this.x = window.innerWidth
-                    this.y = window.innerHeight
+                    // Create states that holds start position
+                    let startPosX 
+                    let startPosY 
 
                     p5.setup = () => {
-                        this.canvas = p5.createCanvas(this.x , this.y)
+                        this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
                         this.canvas.parent(this.$refs.canvas)
+                        
+                        // Setup value for startposition on circle
+                        startPosX = 300 // or use vue props with this.x = 300 => then remove states on the top
+                        startPosY = 300 // this.y = 300
                     }
 
                     p5.draw = () => {
                         p5.background('#FFe44588') 
-                        p5.circle(p5.mouseX, p5.mouseY, 20);
+                        // Apply start position setup on the circle
+                        p5.circle(startPosX, startPosY, 20); // p5.circle(this.x, this.y, 20);
                         p5.fill('#222222')
                     }
 
-                    // Resize the canvas on window resize 
                     p5.windowResized = () => {
                         p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
                     }
-
                 }
 
                 this.element = new P5.lib(this.script)
