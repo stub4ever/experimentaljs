@@ -46,12 +46,16 @@
                     }
 
                     p5.draw = () => {
-                        // Each time when move my mouse over the canvas I draw a frame. Base on this order it add first the background > circle > fill = repeat
-                        // This will prevent repeatable circle on the frame when move mouse
-                        p5.background('#FFe44588') // add apha channel by 2 hexnumber => to get trail effects on the circle => the higher the number the faster response
+                        p5.background('#FFe44588') 
                         p5.circle(p5.mouseX, p5.mouseY, 20);
                         p5.fill('#222222')
                     }
+
+                    // Resize the canvas on window resize 
+                    p5.windowResized = () => {
+                        p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+                    }
+
                 }
 
                 this.element = new P5.lib(this.script)
@@ -61,6 +65,11 @@
 </script>
 
 <style lang="scss" scoped>
+    // Prevent a underline gap in canvas
+    canvas {
+        vertical-align: bottom;
+    }
+
     section {
         background: #FFe8b4; 
         // Size of the drawing area
