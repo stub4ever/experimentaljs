@@ -2,6 +2,7 @@
     <main>
         <section>
             <!-- Here comes drawing area -->
+            <div data-ref="square"></div>
         </section>
     </main>
 </template>
@@ -17,30 +18,34 @@
         },
         mounted() {
             // Init object slider
-            const square = document.querySelectorAll('[data-ref="square"]');
-            if( square.length > 0) {
-                for( var i = 0; i < square.length; i++) {
-                    this.initSpinningSquare(square[i]); 
-                }
-            }
+            // const square = document.querySelectorAll('[data-ref="square"]');
+            // if( square.length > 0) {
+            //     for( var i = 0; i < square.length; i++) {
+            //         this.initSpinningSquare(square[i]); 
+            //     }
+            // }
         },
         data() {
             return {
+                spinningSquare: new SpinningSquare(),
             }
         },
         methods: {
-            initSpinningSquare: function(element) {
-                // The SliderItem Class
-                class SpinningSquare {
-                    constructor(opts) {
-                        this.DOM = {
-                            ref: opts.ref,
-                        };
-                    }
-                }
+            // https://inventi.studio/en/blog/vuejs-with-constructor-pattern
+            // https://stackoverflow.com/questions/52708719/how-to-reuse-es6-class-in-vue-js
+            
+            // initSpinningSquare: function(element) {
+            //         constructor(opts) {
+            //             this.DOM = {
+            //                 ref: opts.ref,
+            //             };
 
-                new SpinningSquare({ref: element });
-            }
+            //             console.log(this.DOM.ref)
+            //         }
+            //     }
+
+            //     new SpinningSquare({ref: element });
+            // }
         }
     }
 </script>
