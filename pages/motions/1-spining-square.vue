@@ -25,11 +25,11 @@
             //     }
             // }
         },
-        data() {
-            return {
-                spinningSquare: new SpinningSquare(),
-            }
-        },
+        // data() {
+        //     return {
+        //         spinningSquare: new SpinningSquare(),
+        //     }
+        // },
         methods: {
             // https://inventi.studio/en/blog/vuejs-with-constructor-pattern
             // https://stackoverflow.com/questions/52708719/how-to-reuse-es6-class-in-vue-js
