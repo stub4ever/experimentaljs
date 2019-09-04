@@ -39,8 +39,8 @@
                 this.script = p5 => {
                     let startPosX 
                     let startPosY 
-                    let speedX // 5px per frame
-                    let speedY // 5px per frame
+                    let speedX 
+                    let speedY 
 
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
@@ -57,9 +57,20 @@
                         p5.circle(startPosX, startPosY, 20); 
                         p5.fill('#222222')
                         
-                        // Increase the speed per frame on the circle to make a movement
-                        startPosX = startPosX + speedX // everytime it draw it takes the speed from speedX increment
+                        startPosX = startPosX + speedX 
                         startPosY = startPosY + speedY
+
+                        // Set statement to change want to go off the edge of the canvas
+                        // reverse direction when it goes top(0) or bottom(windowHeight)
+                        if(startPosY > p5.windowHeight || startPosY < 0 ) {
+                            speedY = speedY * -1
+                        }
+                        
+                        // Set statement to change want to go off the edge of the canvas
+                        // reverse direction when it right(windowWidth) or left(0)
+                        if(startPosX > p5.windowWidth || startPosX < 0 ) {
+                            speedX = speedX * -1
+                        }
                     }
 
                     p5.windowResized = () => {
