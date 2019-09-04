@@ -37,24 +37,29 @@
             // https://github.com/processing/p5.js/issues/2646
             initBall() {
                 this.script = p5 => {
-                    // Create states that holds start position
                     let startPosX 
                     let startPosY 
+                    let speedX // 5px per frame
+                    let speedY // 5px per frame
 
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
                         this.canvas.parent(this.$refs.canvas)
                         
-                        // Setup value for startposition on circle
-                        startPosX = 300 // or use vue props with this.x = 300 => then remove states on the top
-                        startPosY = 300 // this.y = 300
+                        startPosX = 300 
+                        startPosY = 300 
+                        speedX = 5
+                        speedY = 5
                     }
 
                     p5.draw = () => {
                         p5.background('#FFe44588') 
-                        // Apply start position setup on the circle
-                        p5.circle(startPosX, startPosY, 20); // p5.circle(this.x, this.y, 20);
+                        p5.circle(startPosX, startPosY, 20); 
                         p5.fill('#222222')
+                        
+                        // Increase the speed per frame on the circle to make a movement
+                        startPosX = startPosX + speedX // everytime it draw it takes the speed from speedX increment
+                        startPosY = startPosY + speedY
                     }
 
                     p5.windowResized = () => {
