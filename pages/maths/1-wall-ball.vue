@@ -41,6 +41,7 @@
                     let startPosY 
                     let speedX 
                     let speedY 
+                    let radius // addd radius
 
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
@@ -50,27 +51,32 @@
                         startPosY = 300 
                         speedX = 5
                         speedY = 5
+                        radius = 50  // take the half of the radius (diameter)
                     }
 
                     p5.draw = () => {
                         p5.background('#FFe44588') 
-                        p5.circle(startPosX, startPosY, 20); 
+                        p5.circle(startPosX, startPosY, radius*2);  // mutiple to apply full size
                         p5.fill('#222222')
                         
                         startPosX = startPosX + speedX 
                         startPosY = startPosY + speedY
 
-                        // Set statement to change want to go off the edge of the canvas
-                        // reverse direction when it goes top(0) or bottom(windowHeight)
-                        if(startPosY > p5.windowHeight || startPosY < 0 ) {
+                        // Update statement when circle bounce on the edge it hit on the on radius not the middle of diameter.
+                        // reverse direction when it goes top(radius) or bottom(windowHeight - radius)
+                        if(startPosY > p5.windowHeight - radius || startPosY < radius ) {
                             speedY = speedY * -1
                         }
-                        
-                        // Set statement to change want to go off the edge of the canvas
-                        // reverse direction when it right(windowWidth) or left(0)
-                        if(startPosX > p5.windowWidth || startPosX < 0 ) {
+
+                        // reverse direction when it right(windowWidth - radius) or left(radius)
+                        if(startPosX > p5.windowWidth - radius || startPosX < radius ) {
                             speedX = speedX * -1
                         }
+                        
+                        // Constrain(number to constrain,low (minimum limit), high limit(max limit)) 
+                        // Lets constrain when we resize our screen to keep the ball constrain between min limit and high limit of the currentPosition
+                        startPosX = p5.constrain(startPosX,radius, p5.windowWidth - radius)   
+                        startPosY = p5.constrain(startPosY,radius, p5.windowHeight - radius)
                     }
 
                     p5.windowResized = () => {
