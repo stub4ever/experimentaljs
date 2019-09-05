@@ -11,14 +11,16 @@
 <script>
     // Using a plugin that accesses the window object immediately they are imported
     // https://medium.com/@codebeast_/why-your-third-party-plugin-dont-work-in-nuxt-and-how-to-fix-it-d1a8caadf422
-    let P5 = {};
+    let P5;
     if (process.browser) {
-        P5.lib = require('p5/lib/p5.min.js');
-        // P5.lib.sound = require('p5/lib/addons/p5.sound.min.js');        
+        P5 = require('p5');
+        require('p5/lib/addons/p5.sound');
     }
 
     // Plugins
     import Util from '~/plugins/Util.js'
+    // const sound1 = require('~/assets/audio/drop.mp3')
+
     
     export default {
         data: function () {
@@ -28,6 +30,7 @@
                 x: 0,
                 y: 0,
                 element: null,
+                sound: null,
             }
         },
         mounted () {
@@ -36,12 +39,20 @@
         methods: {
             // https://github.com/processing/p5.js/issues/2646
             initBall() {
-                this.script = p5 => {
+                this.script = (p5) => {
                     let startPosX 
                     let startPosY 
                     let speedX 
                     let speedY 
-                    let radius // addd radius
+                    let radius 
+                    // sound
+                    let sound
+            
+                    // load the sound 
+                    p5.preload = () => {
+                        sound = p5.loadSound(require('~/assets/audio/drop.mp3'));
+                        // here you can upload many as you want
+                    }
 
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
@@ -51,30 +62,32 @@
                         startPosY = 300 
                         speedX = 5
                         speedY = 5
-                        radius = 50  // take the half of the radius (diameter)
+                        radius = 50  
+
+                        // apply this to make it work on chrome => it doesn't play sounds from the start
+                        // https://github.com/processing/p5.js-sound/pull/322
+                        // https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
                     }
 
                     p5.draw = () => {
                         p5.background('#FFe44588') 
-                        p5.circle(startPosX, startPosY, radius*2);  // mutiple to apply full size
+                        p5.circle(startPosX, startPosY, radius*2);  
                         p5.fill('#222222')
-                        
+
                         startPosX = startPosX + speedX 
                         startPosY = startPosY + speedY
-
-                        // Update statement when circle bounce on the edge it hit on the on radius not the middle of diameter.
-                        // reverse direction when it goes top(radius) or bottom(windowHeight - radius)
                         if(startPosY > p5.windowHeight - radius || startPosY < radius ) {
                             speedY = speedY * -1
+                            
+                            sound.play() // play when it hit the edge of the screen 
                         }
 
-                        // reverse direction when it right(windowWidth - radius) or left(radius)
                         if(startPosX > p5.windowWidth - radius || startPosX < radius ) {
                             speedX = speedX * -1
+
+                            sound.play() // play when it hit the edge of the screen 
                         }
-                        
-                        // Constrain(number to constrain,low (minimum limit), high limit(max limit)) 
-                        // Lets constrain when we resize our screen to keep the ball constrain between min limit and high limit of the currentPosition
+
                         startPosX = p5.constrain(startPosX,radius, p5.windowWidth - radius)   
                         startPosY = p5.constrain(startPosY,radius, p5.windowHeight - radius)
                     }
@@ -82,9 +95,10 @@
                     p5.windowResized = () => {
                         p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
                     }
+
                 }
 
-                this.element = new P5.lib(this.script)
+                this.element = new P5(this.script)
             }
         },
     }
