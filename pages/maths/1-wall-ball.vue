@@ -28,13 +28,17 @@
                 ball: {
                     script: null,
                     canvas: null,
-                    radius: 0,
-                    x: 0,
-                    y: 0,
-                    speedX:0,
-                    speedY:0,
                     element: null,
                     sound: null,
+                    radius: 50,
+                    pos: {
+                        x: 300,
+                        y: 300,
+                    },
+                    speed: {
+                        x: 5,
+                        y: 5
+                    }
                 }
             }
         },
@@ -45,6 +49,9 @@
             // https://github.com/processing/p5.js/issues/2646
             initBall() {
                 this.ball.script = (p5) => {
+                    let position 
+                    let speed 
+                    
                     // load the sound 
                     p5.preload = () => {
                         this.ball.sound = p5.loadSound(require('~/assets/audio/drop.mp3'));
@@ -53,12 +60,11 @@
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
                         this.canvas.parent(this.$refs.canvas)
-                        this.ball.x = 300 
-                        this.ball.y = 300 
-                        this.ball.speedX = 5
-                        this.ball.speedY = 5
-                        this.ball.radius = 50  
 
+                        // Apply p5 vector to get methods X, Y and more
+                        position = p5.createVector(this.ball.pos.x, this.ball.pos.y) 
+                        speed = p5.createVector(this.ball.speed.x, this.ball.speed.y) 
+                        
                         // apply this to make it work on chrome => it doesn't play sounds from the start
                         // https://github.com/processing/p5.js-sound/pull/322
                         // https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
@@ -66,25 +72,28 @@
 
                     p5.draw = () => {
                         p5.background('#FFe44588') 
-                        p5.circle(this.ball.x, this.ball.y, this.ball.radius*2);  
+                        p5.circle(position.x, position.y, this.ball.radius*2);  
                         p5.fill('#222222')
 
-                        this.ball.x = this.ball.x + this.ball.speedX 
-                        this.ball.y = this.ball.y + this.ball.speedY
-                        if(this.ball.y > p5.windowHeight - this.ball.radius || this.ball.y < this.ball.radius ) {
-                            this.ball.speedY = this.ball.speedY * -1
+                        // position.x = position.x + speed.x 
+                        // position.y = position.y + speed.y
+                        position.add(speed) // apply each frame draw speed 5px per sec on x + y
+	                    speed.mult(1) // With mult() to increase or decrease the speed each time
+
+                        if(position.y > p5.windowHeight - this.ball.radius || position.y < this.ball.radius ) {
+                            speed.y = speed.y * -1
                             
-                            this.ball.sound.play() // play when it hit the edge of the screen 
+                            this.ball.sound.play() 
                         }
 
-                        if(this.ball.x > p5.windowWidth - this.ball.radius || this.ball.x < this.ball.radius ) {
-                            this.ball.speedX = this.ball.speedX * -1
+                        if(position.x > p5.windowWidth - this.ball.radius || position.x < this.ball.radius ) {
+                            speed.x = speed.x * -1
 
-                            this.ball.sound.play() // play when it hit the edge of the screen 
+                            this.ball.sound.play()
                         }
 
-                        this.ball.x = p5.constrain(this.ball.x,this.ball.radius, p5.windowWidth - this.ball.radius)   
-                        this.ball.y = p5.constrain(this.ball.y,this.ball.radius, p5.windowHeight - this.ball.radius)
+                        position.x = p5.constrain(position.x,this.ball.radius, p5.windowWidth - this.ball.radius)   
+                        position.y = p5.constrain(position.y,this.ball.radius, p5.windowHeight - this.ball.radius)
                     }
 
                     p5.windowResized = () => {
