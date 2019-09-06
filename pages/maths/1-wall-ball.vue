@@ -25,12 +25,17 @@
     export default {
         data: function () {
             return {
-                script: null,
-                canvas: null,
-                x: 0,
-                y: 0,
-                element: null,
-                sound: null,
+                ball: {
+                    script: null,
+                    canvas: null,
+                    radius: 0,
+                    x: 0,
+                    y: 0,
+                    speedX:0,
+                    speedY:0,
+                    element: null,
+                    sound: null,
+                }
             }
         },
         mounted () {
@@ -39,30 +44,20 @@
         methods: {
             // https://github.com/processing/p5.js/issues/2646
             initBall() {
-                this.script = (p5) => {
-                    let startPosX 
-                    let startPosY 
-                    let speedX 
-                    let speedY 
-                    let radius 
-                    // sound
-                    let sound
-            
+                this.ball.script = (p5) => {
                     // load the sound 
                     p5.preload = () => {
-                        sound = p5.loadSound(require('~/assets/audio/drop.mp3'));
-                        // here you can upload many as you want
+                        this.ball.sound = p5.loadSound(require('~/assets/audio/drop.mp3'));
                     }
 
                     p5.setup = () => {
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
                         this.canvas.parent(this.$refs.canvas)
-                        
-                        startPosX = 300 
-                        startPosY = 300 
-                        speedX = 5
-                        speedY = 5
-                        radius = 50  
+                        this.ball.x = 300 
+                        this.ball.y = 300 
+                        this.ball.speedX = 5
+                        this.ball.speedY = 5
+                        this.ball.radius = 50  
 
                         // apply this to make it work on chrome => it doesn't play sounds from the start
                         // https://github.com/processing/p5.js-sound/pull/322
@@ -71,25 +66,25 @@
 
                     p5.draw = () => {
                         p5.background('#FFe44588') 
-                        p5.circle(startPosX, startPosY, radius*2);  
+                        p5.circle(this.ball.x, this.ball.y, this.ball.radius*2);  
                         p5.fill('#222222')
 
-                        startPosX = startPosX + speedX 
-                        startPosY = startPosY + speedY
-                        if(startPosY > p5.windowHeight - radius || startPosY < radius ) {
-                            speedY = speedY * -1
+                        this.ball.x = this.ball.x + this.ball.speedX 
+                        this.ball.y = this.ball.y + this.ball.speedY
+                        if(this.ball.y > p5.windowHeight - this.ball.radius || this.ball.y < this.ball.radius ) {
+                            this.ball.speedY = this.ball.speedY * -1
                             
-                            sound.play() // play when it hit the edge of the screen 
+                            this.ball.sound.play() // play when it hit the edge of the screen 
                         }
 
-                        if(startPosX > p5.windowWidth - radius || startPosX < radius ) {
-                            speedX = speedX * -1
+                        if(this.ball.x > p5.windowWidth - this.ball.radius || this.ball.x < this.ball.radius ) {
+                            this.ball.speedX = this.ball.speedX * -1
 
-                            sound.play() // play when it hit the edge of the screen 
+                            this.ball.sound.play() // play when it hit the edge of the screen 
                         }
 
-                        startPosX = p5.constrain(startPosX,radius, p5.windowWidth - radius)   
-                        startPosY = p5.constrain(startPosY,radius, p5.windowHeight - radius)
+                        this.ball.x = p5.constrain(this.ball.x,this.ball.radius, p5.windowWidth - this.ball.radius)   
+                        this.ball.y = p5.constrain(this.ball.y,this.ball.radius, p5.windowHeight - this.ball.radius)
                     }
 
                     p5.windowResized = () => {
@@ -98,7 +93,7 @@
 
                 }
 
-                this.element = new P5(this.script)
+                this.ball.element = new P5(this.ball.script)
             }
         },
     }
