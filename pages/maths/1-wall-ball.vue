@@ -61,7 +61,6 @@
                         this.canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
                         this.canvas.parent(this.$refs.canvas)
 
-                        // Apply p5 vector to get methods X, Y and more
                         position = p5.createVector(this.ball.pos.x, this.ball.pos.y) 
                         speed = p5.createVector(this.ball.speed.x, this.ball.speed.y) 
                         
@@ -75,10 +74,8 @@
                         p5.circle(position.x, position.y, this.ball.radius*2);  
                         p5.fill('#222222')
 
-                        // position.x = position.x + speed.x 
-                        // position.y = position.y + speed.y
-                        position.add(speed) // apply each frame draw speed 5px per sec on x + y
-	                    speed.mult(1) // With mult() to increase or decrease the speed each time
+                        position.add(speed) 
+	                    speed.mult(1) 
 
                         if(position.y > p5.windowHeight - this.ball.radius || position.y < this.ball.radius ) {
                             speed.y = speed.y * -1
@@ -96,10 +93,17 @@
                         position.y = p5.constrain(position.y,this.ball.radius, p5.windowHeight - this.ball.radius)
                     }
 
+                    // When we clicked change the angle of direction random
+                    p5.mouseClicked = () => {   
+                        // everytime when we click we get an random number
+                        let angle = p5.random(p5.TWO_PI)
+                        // Change angle of rotation
+                        speed.rotate(angle)
+                    }
+
                     p5.windowResized = () => {
                         p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
                     }
-
                 }
 
                 this.ball.element = new P5(this.ball.script)
