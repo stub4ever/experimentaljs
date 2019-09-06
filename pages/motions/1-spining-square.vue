@@ -31,6 +31,9 @@
         //     }
         // },
         methods: {
+
+            // https://markus.oberlehner.net/blog/implementing-the-builder-pattern-in-vue-forms/
+            
             // https://inventi.studio/en/blog/vuejs-with-constructor-pattern
             // https://stackoverflow.com/questions/52708719/how-to-reuse-es6-class-in-vue-js
             
