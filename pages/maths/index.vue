@@ -18,6 +18,7 @@
             return {
                 items: [
                     { linkName: '1. WallBall', linkPath: '/maths/1-wall-ball' },
+                    { linkName: '2. Flower Brush', linkPath: '/maths/2-flower-brush' },
                 ]
             }
         },

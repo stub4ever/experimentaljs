@@ -75,7 +75,7 @@
                         p5.fill('#222222')
 
                         position.add(speed) 
-	                    speed.mult(1) 
+                        speed.mult(1) 
 
                         if(position.y > p5.windowHeight - this.ball.radius || position.y < this.ball.radius ) {
                             speed.y = speed.y * -1
