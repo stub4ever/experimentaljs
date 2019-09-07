@@ -49,9 +49,13 @@
                 this.square.shape = this.square.canvas.makeRectangle(this.square.x, this.square.y, this.square.width, this.square.height) // set offset 250 + size 100
                 this.square.shape.fill = "#f9bc31" 
                 this.square.shape.noStroke() 
-                // this.square.shape.rotation = 45 // It wouldn't be 45deg => must apply radiant
                 this.square.shape.rotation = Math.PI * .25 
-
+                // Bind listen "update" with an functione with frame 60fps
+                this.square.canvas.bind("update", () => this.square.shape.rotation += 0.05) // If use minus it will goes to another way
+                // this.square.canvas.bind("update", () => {
+                //     // add current rotation with small increment
+                //     this.square.shape.rotation = this.square.shape.rotation + 0.05 
+                // })
                 this.square.canvas.play() 
             }
         }
