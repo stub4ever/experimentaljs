@@ -18,6 +18,7 @@
             return {
                 items: [
                     { linkName: '1. Spining Square', linkPath: '/motions/1-spining-square' },
+                    { linkName: '2. Grouped Rotations', linkPath: '/motions/2-grouped-rotations' },
                 ]
             }
         },
