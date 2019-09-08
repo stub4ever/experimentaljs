@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Flower from '@/modules/Flower.js';
+import Flower from '@/modules/maths/Flower.js';
 
 export default {
     data() {
