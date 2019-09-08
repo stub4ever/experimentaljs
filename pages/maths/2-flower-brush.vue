@@ -34,6 +34,7 @@
                     
                     sketch.setup = () => {
                         this.canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight).parent(this.canvas.el)
+                        this.canvas.background('#000'); 
                     }
                                         
                     sketch.draw = () => {
@@ -51,16 +52,10 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
    // Prevent no space between gap of the page
     canvas {
         vertical-align: bottom;
-    }
-
-    body {
-        background: black;
-        color: white;
-        width: 100%;
     }
 
 </style>

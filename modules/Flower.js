@@ -9,17 +9,20 @@ class Flower {
         this.id = id
         this.x = x
         this.y = y
-
-        this.p5.noStroke()
-        this.p5.fill('red')
+        
+        this.p5.fill('white')
         // set mouse X and Y clicked
         // set in the middle of the square base on the size of square
         this.p5.square(this.x - 25, this.y  - 25 , 50)
+        this.p5.noStroke()
+        
+        // the overlayer below will draw on the top of square
+        this.p5.fill('red')
+        this.p5.circle(this.x, this.y, 10)
     }
 
     init = () => {
         console.log('flower init')
-        console.log(this.objs, this.store)
     }
 }
 
