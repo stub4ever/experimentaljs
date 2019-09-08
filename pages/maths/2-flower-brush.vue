@@ -39,14 +39,12 @@ export default {
                 }
 
                 sketch.draw = () => {
-                    // Add draw for each flower items to a canvas
                     this.flowers.forEach(flower => {
                         flower.draw() 
                     });
                 }
 
                 sketch.mouseClicked = () => {
-                    // When mouse is clicked push the flower item inside this.flowers array
                     this.flowers.push(_flower = new Flower(sketch, sketch.mouseX, sketch.mouseY))
                 }
             }
