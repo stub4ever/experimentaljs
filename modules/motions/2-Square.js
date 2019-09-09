@@ -1,4 +1,3 @@
-// https://github.com/naokiishizuq/myWebPage/blob/master/production/src/modules/vehicle.js
 class Square {
     // create a two sketch as an object "instance"
     constructor(two, x, y, width, height) {
@@ -8,11 +7,16 @@ class Square {
         this.width = width;
         this.height = height;
 
-        this.shape = this.canvas.makeRectangle(this.x, this.y, this.width, this.height) // set offset 250 + size 100
-
+        this.init();
     }
 
     init = () => {
+        this.shape = this.canvas.makeRectangle(this.x, this.y, this.width, this.height) // set offset 250 + size 100
+        this.shape.noStroke();
+        this.shape.fill = "#f9bc31"
+    }
+
+    play = () => {
         this.canvas.play() 
     }
 }

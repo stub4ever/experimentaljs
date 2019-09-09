@@ -17,6 +17,16 @@
         data() {
             return {
                 canvas: null,
+
+                square: {
+                    numberOfShapes: 12,
+                    el: null,
+                    x: 0,
+                    y: 250,
+                    width: 20,
+                    height: 20
+                }
+                
             }
         },
         mounted() {
@@ -31,8 +41,13 @@
                 }
                 this.canvas = new Two(params).appendTo(this.$refs.canvas) // appeend two to this container
                 
-                const square = new Square(this.canvas, 250, 250, 100, 100)
-                square.init()
+                for (let index = 0; index < this.square.numberOfShapes; index++) {
+                    this.square.x = index * 30 + 30// Add plus 30 space to the right for each start position of square by 30 space
+                    this.square.y = 250    
+                    
+                    this.square.el = new Square(this.canvas, this.square.x, this.square.y, this.square.width, this.square.height)
+                    this.square.el.play()
+                }
             }
         }
     }
