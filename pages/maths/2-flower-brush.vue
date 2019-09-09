@@ -39,7 +39,7 @@ export default {
                     this.canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight).parent(this.canvas.el)
                     this.canvas.background('#000');
 
-                    this.hue = sketch.random(0,100) // Set here random number
+                    this.hue = sketch.random(0,100) 
                 }
 
                 sketch.draw = () => {
@@ -48,17 +48,13 @@ export default {
                     });
                 }
                 
-                // When we click then it will update the hue every single time.
                 sketch.mouseDragged = () => {
-                    // this will never go back to the starts again. when it hit 0 it stops. 
-                    // Change after the plus a different number to change the speed of drawing
                     this.hue = this.hue + 1 
                     
-                    if (this.hue > 100) { // set this state to reset 0 when hue is bigger then 100
+                    if (this.hue > 100) { 
                         this.hue = 0
                     }
                     
-                    // Inside the parameter add the state hue to apply this state to each Flower
                     this.flowers.push(_flower = new Flower(sketch, sketch.mouseX, sketch.mouseY, this.hue))
                 }
             }
