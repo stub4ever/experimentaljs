@@ -24,7 +24,15 @@
         },
         methods: {
             initCanvas: function() {
+                // Two.js construction
+                const params = {
+                    width: 500,
+                    height: 500
+                }
+                this.canvas = new Two(params).appendTo(this.$refs.square) // appeend two to this container
                 
+                const square = new Square(this.canvas, 250, 250, 100, 100)
+                square.init()
             }
         }
     }

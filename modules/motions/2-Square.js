@@ -9,9 +9,12 @@ class Square {
         this.height = height;
 
         this.shape = this.canvas.makeRectangle(this.x, this.y, this.width, this.height) // set offset 250 + size 100
+
     }
 
-    init = () => {}
+    init = () => {
+        this.canvas.play() 
+    }
 }
 
 // export module
