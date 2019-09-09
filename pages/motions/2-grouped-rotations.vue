@@ -1,6 +1,6 @@
 <template>
     <main>
-        <section ref="square"></section>
+        <section ref="canvas"></section>
     </main>
 </template>
 
@@ -29,7 +29,7 @@
                     width: 500,
                     height: 500
                 }
-                this.canvas = new Two(params).appendTo(this.$refs.square) // appeend two to this container
+                this.canvas = new Two(params).appendTo(this.$refs.canvas) // appeend two to this container
                 
                 const square = new Square(this.canvas, 250, 250, 100, 100)
                 square.init()
@@ -37,13 +37,10 @@
         }
     }
 </script>
-
 <style lang="scss" scoped>
-    body {
-        background-color: #FFe8b4; 
-    }
-
     section {
+        background-color: #FFe8b4; 
+
         // Size of the drawing area
         width: 500px;
         height: 500px;
