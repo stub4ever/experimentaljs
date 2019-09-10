@@ -1,71 +1,99 @@
 <template>
-    <main>
-        <section ref="canvas"></section>
-    </main>
+<main>
+    <section ref="canvas"></section>
+</main>
 </template>
 
 <script>
-    // Plugins
-    import Util from '~/plugins/Util.js'
-    import Two from 'two.js' 
-    import Square from '@/modules/motions/2-Square.js'
+// Plugins
+import Util from '~/plugins/Util.js'
+import Two from 'two.js'
+import Square from '@/modules/motions/2-Square.js'
 
-    export default {
-        components: {
-            
+export default {
+    components: {
+
+    },
+    computed: {
+        // Full rotation
+        // In radians, handy to store these in readable variable
+        fullRotation() {
+            return (Math.PI * 2)
         },
-        data() {
-            return {
-                canvas: null,
 
-                square: {
-                    numberOfShapes: 12,
-                    el: null,
-                    x: 0,
-                    y: 250,
-                    width: 20,
-                    height: 20
-                }
-                
+        // Half rotation
+        fullRotation() {
+            return Math.PI 
+        }
+    },
+    data() {
+        return {
+            canvas: null,
+
+            square: {
+                numberOfShapes: 12,
+                el: null,
+                x: 0,
+                y: 0,
+                width: 50,
+                height: 50,
+                angle: null,
+                plotRadius: 150
             }
-        },
-        mounted() {
-            this.initCanvas()
-        },
-        methods: {
-            initCanvas: function() {
-                // Two.js construction
-                const params = {
-                    width: 500,
-                    height: 500
-                }
-                this.canvas = new Two(params).appendTo(this.$refs.canvas) // appeend two to this container
+
+        }
+    },
+    mounted() {
+        this.initCanvas()
+    },
+    methods: {
+        initCanvas: function () {
+            // UTIL
+            
+            // Rotations
+            // In radians, handy to store these in readable variable
+            const fullRotation = Math.PI * 2 
+            const halfRotation = Math.PI     
+
+            // Two.js construction
+            const params = {
+                width: 500,
+                height: 500
+            }
+            this.canvas = new Two(params).appendTo(this.$refs.canvas)
+
+            for (let index = 0; index < this.square.numberOfShapes; index = index + 1) {
+                // Define the angle
+                 // 2pi * index / TotalNumber => now we can get the X + Y direction
+                this.square.angle = fullRotation * index / this.square.numberOfShapes
                 
-                for (let index = 0; index < this.square.numberOfShapes; index++) {
-                    this.square.x = index * 30 + 30// Add plus 30 space to the right for each start position of square by 30 space
-                    this.square.y = 250    
-                    
-                    this.square.el = new Square(this.canvas, this.square.x, this.square.y, this.square.width, this.square.height)
-                    this.square.el.play()
-                }
+                // Define cos direction => radius * cos(angle)
+                this.square.x = (params.width / 2) + this.square.plotRadius * Math.cos(this.square.angle) 
+                
+                // Define sin angle => radius * sin(angle)
+                this.square.y = (params.width / 2) + this.square.plotRadius * Math.sin(this.square.angle)
+
+                this.square.el = new Square(this.canvas, this.square.x, this.square.y, this.square.width, this.square.height)
+                this.square.el.play()
             }
         }
     }
+}
 </script>
+
 <style lang="scss" scoped>
-    section {
-        background-color: #FFe8b4; 
+section {
+    background-color: #FFe8b4;
 
-        // Size of the drawing area
-        width: 500px;
-        height: 500px;
+    // Size of the drawing area
+    width: 500px;
+    height: 500px;
 
-        // Fixed center center
-        position: fixed;
-        top: 50%;
-        left: 50%;
-         // Shift itself over by 50% of its width and height
-        transform: translate(-50%, -50%);
-    }
-
+    // Fixed center center
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    // Shift itself over by 50% of its width and height
+    transform: translate(-50%, -50%);
+}
 </style>

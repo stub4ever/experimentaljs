@@ -12,7 +12,7 @@ class Square {
 
     init = () => {
         this.shape = this.canvas.makeRectangle(this.x, this.y, this.width, this.height) // set offset 250 + size 100
-        this.shape.noStroke();
+        this.shape.noStroke()
         this.shape.fill = "#f9bc31"
     }
 
