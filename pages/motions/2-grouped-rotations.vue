@@ -32,13 +32,13 @@ export default {
 
             square: {
                 numberOfShapes: 12,
+                shapes: [],
                 el: null,
                 x: 0,
                 y: 0,
                 width: 50,
                 height: 50,
-                angle: null,
-                plotRadius: 150
+                plotRadius: 200
             }
 
         }
@@ -73,9 +73,31 @@ export default {
                 // Define sin angle => radius * sin(angle)
                 this.square.y = (params.width / 2) + this.square.plotRadius * Math.sin(this.square.angle)
 
-                this.square.el = new Square(this.canvas, this.square.x, this.square.y, this.square.width, this.square.height)
+                // 1. Add state angle to each individual square
+                // 2. Push every object inside the array => to have the access outside this loop
+                this.square.shapes.push(this.square.el = new Square(this.canvas, this.square.x, this.square.y, this.square.width, this.square.height, this.square.angle))
+                
+                // Play each square element
                 this.square.el.play()
             }
+
+            // bind two.bind(event, callback);
+            // Bind an event, string, to a callback function. Passing "all" will bind the callback to all events.
+            this.canvas.bind("update", () => {
+                // 1. Everytime when it update the frame change each element in rotation 
+                // 2. This approach allow to apply outside the scope
+                this.square.shapes.forEach((shape) => {
+                    shape.rotation()
+                });
+            });
+
+
+            // this.canvas.bind('update', test())
+
+            // function test() {
+            //     console.log('test')
+            // }
+
         }
     }
 }
