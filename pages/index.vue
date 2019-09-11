@@ -32,6 +32,7 @@
                 items: [
                     { linkName: '1. Creative Maths', linkPath: '/maths' },
                     { linkName: '2. Creative Motions', linkPath: '/motions' },
+                    { linkName: '3. Up and Running Pixi.JS', linkPath: '/pixi' },
                 ],
                 components: [
                     { linkName: '1. slideshow', linkPath: '/slideshows' },
