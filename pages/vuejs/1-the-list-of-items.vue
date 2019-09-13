@@ -3,7 +3,16 @@
         
         <!-- Add component List -->
         <!-- Pass data attribute by defined a prop ListItems apply kebab case to match with the prop -->
-        <List :list-items="['apple','oranges']" />
+        <!-- when passed only a string, number, boolean no need to apply v-bind -->
+        <List 
+            item-type='Fruit' 
+            :list-items="['apple','oranges']" 
+        />
+        
+        <List 
+            item-type='Instrument' 
+            :list-items="['guitar','piano']" 
+        />
     </div>
 </template>
 
