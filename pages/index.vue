@@ -33,6 +33,7 @@
                     { linkName: '1. Creative Maths', linkPath: '/maths' },
                     { linkName: '2. Creative Motions', linkPath: '/motions' },
                     { linkName: '3. Up and Running Pixi.JS', linkPath: '/pixi' },
+                    { linkName: '4. Vue Js', linkPath: '/vuejs' },
                 ],
                 components: [
                     { linkName: '1. slideshow', linkPath: '/slideshows' },
