@@ -27,11 +27,11 @@
         </fieldset> 
         
         <!-- Add event onclick vue specify directive v-on (shortcut @) + add modifier prevent on click (modifier is chainable) -->
-        <!-- If email or message isn't created disable the button -->
+        <!-- If email is invalid or message isn't created disable the button -->
         <button 
             class="btn btn--primary margin-top-sm"
             @click.prevent="submitForm"
-            :disabled="!email || !message"
+            :disabled="!isEmailValid || !message"
         >Send message</button>
     </form>
 </template>
@@ -47,12 +47,21 @@
                 message: ''
             }
         },
+
+        // When applying complex logic that return data => use computed method instead html inline
+        // Inside the computed everytime when a two-binding property change it will update automatically
+        computed: {
+            isEmailValid() {
+                let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                return reg.test(this.email) 
+            }
+        },
         methods: {
             submitForm(event) {
                 // validate form
 
                 // submit form
-                console.log('Thank you we will contact you soon')
+                console.log(`Thank you we will contact you soon. We will reply ${this.email} soon.`)
             }
         },
     }
