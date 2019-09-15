@@ -21,15 +21,22 @@
             </div>
         </fieldset> 
         
+        <!-- Add event onclick vue specify directive v-on (shortcut @) + add modifier prevent on click (modifier is chainable) -->
         <button 
             class="btn btn--primary margin-top-sm"
+            @click.prevent="submitForm"
         >Send message</button>
     </form>
 </template>
 
 <script>
     export default {
-        name: 'ContactForm'
+        name: 'ContactForm',
+        methods: {
+            submitForm(event) {
+                console.log(event.target)
+            }
+        },
     }
 </script>
 
