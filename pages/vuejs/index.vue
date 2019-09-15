@@ -15,6 +15,7 @@
             return {
                 items: [
                     { linkName: '1. The list of items', linkPath: '/vuejs/1-the-list-of-items' },
+                    { linkName: '2. Building the Form', linkPath: '/vuejs/2-building-the-form' },
                 ]
             }
         },
