@@ -18,6 +18,7 @@
             return {
                 items: [
                     { linkName: '1. Basic PixiJs Setup', linkPath: '/pixi/1-basic-setup' },
+                    { linkName: '2. Animated GodRay Image', linkPath: '/pixi/2-animated-godRay-image' },
                 ]
             }
         },
