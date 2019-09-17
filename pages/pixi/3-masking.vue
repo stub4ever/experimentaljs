@@ -27,31 +27,23 @@
 
             this.$refs.container.appendChild(app.view)
 
-            let womanImg = PIXI.core.Sprite.from(require('~/assets/img/woman-jogging.jpg'))
+            // Load image black & white in first 
+            let imgBW = PIXI.core.Sprite.from(require('~/assets/img/07.jpg'))
 
-            app.stage.addChild(womanImg)    
+            app.stage.addChild(imgBW)    
 
-            let godrayFilter = new PIXI.filters.GodrayFilter()
-            let colorFilter = new PIXI.filters.AdjustmentFilter()
+            let bwFilter = new PIXI.filters.AdjustmentFilter()
             
             // Set initial startpoint for the filter
-            godrayFilter.parallel = false 
-            godrayFilter.center = [400, 120] 
-            godrayFilter.lacunrity = 2.0 
-            godrayFilter.gain = 0.45 
 
-            colorFilter.contrast = 1.2
-
-            womanImg.filters = [
-                godrayFilter,
-                colorFilter 
+            imgBW.filters = [
+                bwFilter 
             ]
 
             let animSpeed = 0;
 
             app.ticker.add(function() {
                 animSpeed += 0.015 
-                godrayFilter.time = animSpeed 
             })
 
         },
