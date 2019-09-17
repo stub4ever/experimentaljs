@@ -18,7 +18,8 @@
             return {
                 items: [
                     { linkName: '1. Basic PixiJs Setup', linkPath: '/pixi/1-basic-setup' },
-                    { linkName: '2. Animated GodRay Image', linkPath: '/pixi/2-animated-godRay-image' },
+                    { linkName: '2. Filters - Animated GodRay Image', linkPath: '/pixi/2-filters' },
+                    { linkName: '3. Masking - Colored Spotlight Mask', linkPath: '/pixi/3-masking' },
                 ]
             }
         },
