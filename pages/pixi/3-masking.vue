@@ -35,16 +35,11 @@
             let bwFilter = new PIXI.filters.AdjustmentFilter()
             
             // Set initial startpoint for the filter
+            bwFilter.saturation = 0 // set the color to black and white
 
             imgBW.filters = [
                 bwFilter 
             ]
-
-            let animSpeed = 0;
-
-            app.ticker.add(function() {
-                animSpeed += 0.015 
-            })
 
         },
         methods: {},
