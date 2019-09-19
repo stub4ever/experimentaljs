@@ -21,6 +21,7 @@
                     { linkName: '2. Filters - Animated GodRay Image', linkPath: '/pixi/2-filters' },
                     { linkName: '3. Masking - Colored Spotlight Mask', linkPath: '/pixi/3-masking' },
                     { linkName: '4. Custom Cursor', linkPath: '/pixi/4-custom-cursor' },
+                    { linkName: '5. Text Style', linkPath: '/pixi/5-text-style' },
                 ]
             }
         },
