@@ -17,6 +17,7 @@
                     { linkName: '1. The list of items', linkPath: '/vuejs/1-the-list-of-items' },
                     { linkName: '2. Building the Form', linkPath: '/vuejs/2-building-the-form' },
                     { linkName: '3. Implementing V-model', linkPath: '/vuejs/3-implementing-vmodel' },
+                    { linkName: '4. Vue-ifying JavaScript Code', linkPath: '/vuejs/4-vueifying-javascript-code' },
                 ]
             }
         },
