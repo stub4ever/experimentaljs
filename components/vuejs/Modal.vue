@@ -2,23 +2,23 @@
 <!-- Add ref to our modal -->
 <div ref="modal" :class="{'modal--is-visible': show }" class="modal  js-modal" id="modal1" data-animation="on">
     <div class="modal__content max-width-xs" role="alertdialog" tabindex="-1" aria-labelledby="modalTitle1" aria-describedby="modalDescription1">
-        <header class="modal__header">
-            <h4 class="text-truncate" id="modalTitle1">Modal title</h4>
+        
+        <!-- If the slots.header is empty don't display -->
+        <header v-if="$slots.header" class="modal__header">
+            <!-- Supply header content placeholder to this component -->
+            <slot name="header"/>
         </header>
 
         <div class="modal__body">
             <div class="text-component">
-                <p id="modalDescription1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae culpa, inventore alias ab atque similique quod ea reprehenderit.</p>
+                <!-- Default placeholder from this component open and close tag -->
+                <slot></slot>
             </div>
         </div>
 
-        <footer class="modal__footer">
-            <div class="flex justify-end flex-gap-xs">
-                <button 
-                    @click="close"
-                    class="btn btn--subtle js-modal__close"
-                >Cancel</button>
-            </div>
+        <footer v-if="$slots.footer" class="modal__footer">
+            <!-- Supply footer content placeholder to this component -->
+            <slot name="footer"/>
         </footer>
     </div>
 
@@ -51,13 +51,12 @@ export default {
 
 <style lang="scss" scoped>
 
-:root {
+
+.modal {
     // close button
     --modal-close-btn-size: 1.25em;
     --modal-close-btn-padding: var(--space-sm);
-}
 
-.modal {
     position: fixed;
     z-index: var(--zindex-overlay);
     width: 100%;
@@ -110,7 +109,6 @@ export default {
     right: var(--space-sm);
     z-index: var(--zindex-fixed-element);
     padding: var(--modal-close-btn-padding);
-    border-radius: 50%;
     background-color: rgba(0,0,0,.7);
 
     &:hover {
@@ -136,11 +134,9 @@ export default {
         background-color: var(--color-bg);
         box-shadow: var(--shadow-sm);
         transition: .2s;
-        padding: 16px;
 
         .icon {
             color: inherit;
-            width: 16px;
         }
 
         &:hover {
