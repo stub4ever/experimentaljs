@@ -2,9 +2,9 @@
     <div>
 
         <!-- Add a button to trigger modal -->
-        <!-- add click event listener if click modalshown is true -->
+        <!-- add click event listener if click showModal is true -->
         <button 
-            @click.prevent="modalShown = true"
+            @click.prevent="showModal = true"
             class="btn btn--primary" 
             aria-controls="modal1"
         >Show modal</button>
@@ -12,8 +12,8 @@
         <!-- Modal show -->
         <!-- Modal hide => emit event hide when is trigger -->
         <modal 
-            :show="modalShown"
-            @hide="modalShown = false"
+            :show="showModal"
+            @hide="showModal = false"
         ></modal>
     </div>
 </template>
@@ -27,7 +27,7 @@
         },
         data() {
             return {
-                modalShown: false,
+                showModal: false
             }
         },
     }
