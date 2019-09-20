@@ -37,6 +37,22 @@ export default {
 
         app.renderer.plugins.interaction.cursorStyles.default = customCursor;
 
+        // 1. Setup a container 
+        const container = new PIXI.core.Container();
+        app.stage.addChild(container);
+
+        // 2. Apply background image on the container
+        let bgImg = PIXI.core.Sprite.from(require('~/assets/img/abstract-polygon.jpg'));
+        container.addChild(bgImg);
+
+        // 3. Adjust filter color on background image of the container
+        let adjustmentFilter = new PIXI.filters.AdjustmentFilter();
+        adjustmentFilter.red = 1;
+        adjustmentFilter.green = 0.1;
+        adjustmentFilter.blue = 1;
+
+        bgImg.filters = [adjustmentFilter]; // Apply filter
+
         const style01 = new PIXI.core.TextStyle({
             fontFamily: 'Raleway',
             fontSize: 62,
@@ -75,6 +91,27 @@ export default {
         text02.x  = app.screen.width / 2 - text02.width / 2;
         text02.y = app.screen.height / 2 - text02.height / 2 + 58; 
         app.stage.addChild(text02);
+
+
+        // 4. Add load displace Image
+        let displacementSprite = PIXI.core.Sprite.from(require('~/assets/img/displace.png'));
+        // scale displacement Sprite by 2
+        displacementSprite.scale.x = 2;
+        displacementSprite.scale.y = 2;
+        displacementSprite.anchor.set(.5); // Set anchor in middle of radius
+        app.stage.addChild(displacementSprite);
+
+        let displacementFilter = new PIXI.core.filters.DisplacementFilter(displacementSprite);
+        displacementFilter.scale.x = 100;
+        displacementFilter.scale.y = 100;
+        container.filters = [displacementFilter];
+
+        // 5. Create interative Displacement Filter on Sprite when moving mouse
+        app.stage.interactive = true;
+        app.stage.on('mousemove', onMouseMove);
+        function onMouseMove(event){
+            displacementSprite.position.set(event.data.global.x, event.data.global.y);
+        }
 
         // https://github.com/tutsplus/up-and-running-with-pixijs/tree/master/projects
     },
