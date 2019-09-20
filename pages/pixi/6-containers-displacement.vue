@@ -33,15 +33,10 @@ export default {
 
         this.$refs.PIXIAPP.appendChild(app.view)
 
-        // Defining our cusom cursor
         const customCursor = `url('${ cursorDot }'), auto`;
 
-        // Target interactive manager to our cursor
         app.renderer.plugins.interaction.cursorStyles.default = customCursor;
 
-        // 2. Setup the font-face secondly
-
-        // Setup font style 01
         const style01 = new PIXI.core.TextStyle({
             fontFamily: 'Raleway',
             fontSize: 62,
@@ -49,7 +44,6 @@ export default {
             fill: ['#ffffff', '#eeeeee'],
             stroke: '#ffffff',
             strokeThickness: 1,
-            // Drop shadow props
             dropShadow: true,
             dropShadowAlpha: 1,
             dropShadowColor: '#000000',
@@ -57,7 +51,6 @@ export default {
             dropShadowDistance: 10
         });
 
-        // Setup font style 02
         const style02 = new PIXI.core.TextStyle({
             fontFamily: 'Playfair Display',
             fontSize: 150,
@@ -66,7 +59,6 @@ export default {
             stroke: '#4D091C',
             strokeThickness: 3,
             letterSpacing: 4,
-            // Drop shadow props
             dropShadow: true,
             dropShadowAlpha: 0.75,
             dropShadowColor: '#000000',
@@ -74,17 +66,15 @@ export default {
             dropShadowDistance: 10
         });
 
-        // 1. Set the text first 
         let text01 = new PIXI.core.Text('Text Styling in 01', style01);
-        text01.x  = app.screen.width / 2 - text01.width / 2; // Center X of the text 
-        text01.y = app.screen.height / 2 - text01.height / 2 - 58; // Center Y of the text then minus 58px to top
-        app.stage.addChild(text01); // Add this layer to stage
+        text01.x  = app.screen.width / 2 - text01.width / 2; 
+        text01.y = app.screen.height / 2 - text01.height / 2 - 58; 
+        app.stage.addChild(text01); 
 
         let text02 = new PIXI.core.Text('PixiJS', style02);
         text02.x  = app.screen.width / 2 - text02.width / 2;
-        text02.y = app.screen.height / 2 - text02.height / 2 + 58; // Center Y of the text then push 58px to bottom
+        text02.y = app.screen.height / 2 - text02.height / 2 + 58; 
         app.stage.addChild(text02);
-
 
         // https://github.com/tutsplus/up-and-running-with-pixijs/tree/master/projects
     },
