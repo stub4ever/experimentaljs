@@ -1,6 +1,6 @@
 <template>
 <!-- Add ref to our modal -->
-<div ref="modal" class="modal  js-modal" id="modal1" data-animation="on">
+<div ref="modal" :class="{'modal--is-visible': show }" class="modal  js-modal" id="modal1" data-animation="on">
     <div class="modal__content max-width-xs" role="alertdialog" tabindex="-1" aria-labelledby="modalTitle1" aria-describedby="modalDescription1">
         <header class="modal__header">
             <h4 class="text-truncate" id="modalTitle1">Modal title</h4>
@@ -14,13 +14,18 @@
 
         <footer class="modal__footer">
             <div class="flex justify-end flex-gap-xs">
-                <button class="btn btn--subtle js-modal__close">Cancel</button>
-                <button class="btn btn--primary">Install</button>
+                <button 
+                    @click="close"
+                    class="btn btn--subtle js-modal__close"
+                >Cancel</button>
             </div>
         </footer>
     </div>
 
-    <button class="reset modal__close-btn js-modal__close">
+    <button 
+        class="reset modal__close-btn"
+        @click="close"
+    >
         <svg class="icon" viewBox="0 0 16 16">
             <title>Close modal window</title>
             <g stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
@@ -33,27 +38,13 @@
 </template>
 
 <script>
-export default {
-    props: ['show'],
-    
-    watch: {
-        // watcher for show if value is true displayed modal
-        show(value) {
-        // let el = $(this.$refs.modal);
-            console.log(value)
-            if (value) {
-                // show
-                // el.modal(options);
-            }
-            else {
-                // el.modal('hide');
-            }
+export default {   
+    props: ['show'], 
+    methods: {
+        // when close method is triggerd, it will emit parent's method closeModal from the parent or anywhere that has "@close"
+        close() {
+            this.$emit('close');
         }
-    },
-    mounted() {
-        // $(this.$refs.modal).on('hide.bs.modal', () => {
-        //     this.$emit('hide');
-        // });
     }
 }
 </script>
@@ -145,9 +136,11 @@ export default {
         background-color: var(--color-bg);
         box-shadow: var(--shadow-sm);
         transition: .2s;
+        padding: 16px;
 
         .icon {
             color: inherit;
+            width: 16px;
         }
 
         &:hover {
