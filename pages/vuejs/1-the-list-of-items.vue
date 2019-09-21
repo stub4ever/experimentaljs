@@ -18,7 +18,7 @@
 
 <script>
     import axios from 'axios'
-    import List from '~/components/vuejs/List'
+    import List from '~/components/vuejs/envato/List'
 
     export default {
         // Registering component property

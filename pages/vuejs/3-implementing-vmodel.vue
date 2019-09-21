@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import LoginForm from '~/components/vuejs/LoginForm'
+    import LoginForm from '~/components/vuejs/envato/LoginForm'
     
     export default {
         components: {

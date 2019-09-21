@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import ContactForm from '~/components/vuejs/ContactForm'
+    import ContactForm from '~/components/vuejs/envato/ContactForm'
     
     export default {
         components: {

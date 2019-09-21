@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import FormField from '~/components/vuejs/FormField'
+import FormField from '~/components/vuejs/envato/FormField'
 
 export default {
     data() {
