@@ -23,6 +23,7 @@
                     { linkName: '4. Custom Cursor', linkPath: '/pixi/4-custom-cursor' },
                     { linkName: '5. Text Style', linkPath: '/pixi/5-text-style' },
                     { linkName: '6. Containers Displacement', linkPath: '/pixi/6-containers-displacement' },
+                    { linkName: '7. Using Video', linkPath: '/pixi/7-using-video' },
                 ]
             }
         },
