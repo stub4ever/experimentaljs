@@ -31,6 +31,39 @@
             let maskRadius = 250; // Radius is always half of the width circle
             let maskBlur = 64;
 
+            // First video setup
+            let hexOrangeVideo = document.createElement('video');
+            hexOrangeVideo.src = require('~/assets/video/hexorange.mp4') 
+            hexOrangeVideo.preload = true;
+            hexOrangeVideo.autoplay = true;
+            hexOrangeVideo.muted = true; // Has to be muted to eneable autoplay
+            hexOrangeVideo.loop = true; // enable loop
+
+            let hexOrangeVideoTexture = PIXI.core.Texture.from(hexOrangeVideo); // convert video in a texture
+
+            let hexOrangeVideoSprite = new PIXI.core.Sprite(hexOrangeVideoTexture); // convert video texture into a sprite
+            hexOrangeVideoSprite.width = app.screen.width; // resize width video sprite base on the app canvas
+            hexOrangeVideoSprite.height = app.screen.height;
+            
+            app.stage.addChild(hexOrangeVideoSprite); // when having a video sprite we can add it to the stage
+
+            // Second video setup
+            let circleVideo = document.createElement('video');
+            circleVideo.src = require('~/assets/video/3dcircle.mp4') 
+            circleVideo.preload = true;
+            circleVideo.autoplay = true;
+            circleVideo.muted = true; // Has to be muted to eneable autoplay
+            circleVideo.loop = true; // enable loop
+
+            let circleVideoTexture = PIXI.core.Texture.from(circleVideo); // convert video in a texture
+
+            let circleVideoSprite = new PIXI.core.Sprite(circleVideoTexture); // convert video texture into a sprite
+            circleVideoSprite.width = app.screen.width; // resize width video sprite base on the app canvas
+            circleVideoSprite.height = app.screen.height;
+            
+            app.stage.addChild(circleVideoSprite); // when having a video sprite we can add it to the stage
+
+
             let maskShape = new PIXI.core.Graphics().beginFill(0xffffff).drawCircle(maskBlur + maskRadius, maskBlur + maskRadius, maskRadius).endFill();
             maskShape.filters = [new PIXI.core.filters.BlurFilter(maskBlur)]; // Create Blur filter
             
@@ -44,8 +77,8 @@
             
             app.stage.addChild(masker)
 
-            // Set the circle to act as a mask of the color image
-            // imgColor.mask = masker;
+            // Set the circle to act as a mask of the first hexo orange video
+            circleVideoSprite.mask = masker;
 
             app.stage.interactive = true; // is by default false
             app.stage.on('mousemove', moveMask);

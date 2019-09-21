@@ -87,6 +87,12 @@ export default {
         ** You can extend webpack config here
         */
         extend (config, ctx) {
+            // Add this config to load video
+            const vueLoader = config.module.rules.find((loader) => loader.loader === 'vue-loader')
+            vueLoader.options.transformToRequire = {
+                video: 'src',
+                source: 'src'
+            }
             config.module.rules.push({
                 test: /\.(ogg|mp3|wav|mpe?g)$/i,
                 loader: 'file-loader',
