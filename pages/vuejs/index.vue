@@ -19,6 +19,7 @@
                     { linkName: '3. Implementing V-model', linkPath: '/vuejs/3-implementing-vmodel' },
                     { linkName: '4. Vue-ifying JavaScript Code', linkPath: '/vuejs/4-vueifying-javascript-code' },
                     { linkName: '5. Using Slots to Facilitate Custom', linkPath: '/vuejs/5-using-slots-to-facilitate-custom' },
+                    { linkName: '6. Extending Components', linkPath: '/vuejs/6-extending-components' },
                 ]
             }
         },

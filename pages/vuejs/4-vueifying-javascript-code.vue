@@ -11,20 +11,20 @@
 
     <!-- Modal show -->
     <!-- Modal hide => emit event hide when is trigger -->
-    <modal 
+    <base-modal 
         :show="isModalVisible" 
         @close="closeModal"
     >   
-    </modal>
+    </base-modal>
 </div>
 </template>
 
 <script>
-import Modal from '~/components/vuejs/envato/Modal'
+import BaseModal from '~/components/vuejs/envato/BaseModal'
 
 export default {
     components: {
-        Modal,
+        BaseModal,
     },
     data() {
         return {
