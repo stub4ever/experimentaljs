@@ -10,7 +10,7 @@
     >Show modal</button>
     
     <!-- Use event confirm to emit or v-model(when true or false do something) -->
-    <confirm-modal 
+    <delete-modal 
         :show="isModalVisible" 
         @close="closeModal"
         @confirm="DeleteRecource"
@@ -21,16 +21,16 @@
         <!-- The content goes to default slot inside Modal body -->
         <p>Are you sure you want to delete</p>
         
-    </confirm-modal>
+    </delete-modal>
 </div>
 </template>
 
 <script>
-import ConfirmModal from '~/components/vuejs/envato/ConfirmModal'
+import DeleteModal from '~/components/vuejs/envato/DeleteModal'
 
 export default {
     components: {
-        ConfirmModal,
+        DeleteModal,
     },
     data() {
         return {
