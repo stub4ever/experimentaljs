@@ -21,6 +21,7 @@
                     { linkName: '5. Using Slots to Facilitate Custom', linkPath: '/vuejs/5-using-slots-to-facilitate-custom' },
                     { linkName: '6. Extending Components', linkPath: '/vuejs/6-extending-components' },
                     { linkName: '7. Improving Decorated Components', linkPath: '/vuejs/7-improving-decorated-components' },
+                    { linkName: '8. Using scoped slots', linkPath: '/vuejs/8-using-scoped-slots' },
                 ]
             }
         },
