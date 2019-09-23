@@ -4,7 +4,8 @@
     <!-- Passed an arrays of object -->
     <base-list :items="guitars">
         <!-- Apply scope slot inside item(li) with object decorative -->
-        <!-- Passing data in slot scope to childeren -->
+        <!-- Scoped slots make it possible to pass data from a child component to its parent, 
+        thus allowing complete customization of the content. -->
         <a :href="`/guitars/${guitar.id}`" slot-scope="{item: guitar, index}">
             {{guitar.name}}
         </a>
