@@ -26,6 +26,7 @@
                     { linkName: '7. Using Video', linkPath: '/pixi/7-using-video' },
                     { linkName: '8. Parallax Movement', linkPath: '/pixi/8-parallax-movement' },
                     { linkName: '9. Gradients Canvas 2D', linkPath: '/pixi/9-gradients-canvas2d-api' },
+                    { linkName: '10. Blending Flickering', linkPath: '/pixi/10-blending-flickering' },
                 ]
             }
         },
