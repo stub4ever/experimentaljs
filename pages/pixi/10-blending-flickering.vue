@@ -27,8 +27,14 @@
 
             // Apply PIXI application to DOM element hero (our PIXI PIXIAPP)
             this.$refs.PIXIAPP.appendChild(app.view)
+                            
+            let campfireImage = PIXI.core.Sprite.from(require('~/assets/img/Winter-Campfire.jpg'));
+            campfireImage.scale.x = 0.5; // scale X position by 50%
+            campfireImage.scale.y = 0.5; // scale y position by 50%
+            campfireImage.x = 50; // set x position of the image
+            campfireImage.y = 50; // set y position of the image
+            app.stage.addChild(campfireImage);
 
-            // 1. Setup props 
             let centerX = app.screen.width / 2; // Get the center X point of the app screen
             let centerY = app.screen.height / 2; // Get the center Y point of the app screen
 
@@ -49,10 +55,10 @@
                     centerX, centerY, 0,
                     centerX, centerY, centerY
                 );
+
                 // Add three color stops
-                gradient.addColorStop(0.1, '#ff9a44');
-                gradient.addColorStop(0.99, '#fc6076');
-                gradient.addColorStop(1, '#1d1d1d');
+                gradient.addColorStop(0.1, 'rgba(179, 112, 0, 0.7)');
+                gradient.addColorStop(0.99, 'rgba(0, 0, 0, 0)');
 
                 // Set the fill style and draw a rectangle
                 context.fillStyle = gradient;
@@ -67,8 +73,25 @@
             sprite.pivot.x = centerX; 
             sprite.pivot.y = centerY;
             sprite.x = centerX;
-            sprite.y = centerY;
+            sprite.y = centerY + 200 // change the position of the gradient sprite
+            
+            sprite.blendMode = PIXI.core.BLEND_MODES.ADD; // add blend mode to gradient to remove smudge
+
             app.stage.addChild(sprite);
+            
+            // Props to set anim ticker speed for each frame
+            let animSpeed = 0;
+            app.ticker.add(() => {
+                // animSpeed += 0.2;
+                animSpeed += randomAnimSpeed(0.005, 0.01);
+                sprite.scale.x = 2 + Math.cos(animSpeed) * 0.07; // make sure that is scale 2 times than original + random speed
+                sprite.scale.y = 2 + Math.cos(animSpeed) * 0.07;
+            });
+
+            function randomAnimSpeed(min, max){
+                return Math.random() * (max - min + 1) + min; // return random number base on => max + min
+            }
+
 
         },
         methods: {},
