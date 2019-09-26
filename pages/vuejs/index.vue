@@ -23,6 +23,7 @@
                     { linkName: '7. Improving Decorated Components', linkPath: '/vuejs/7-improving-decorated-components' },
                     { linkName: '8. Using scoped slots', linkPath: '/vuejs/8-using-scoped-slots' },
                     { linkName: '9. Using the render() method', linkPath: '/vuejs/9-using-render-method' },
+                    { linkName: '10. Creating a data provider component', linkPath: '/vuejs/10-creating-a-data-provider-component' },
                 ]
             }
         },
